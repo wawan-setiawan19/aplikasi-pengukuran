@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+  
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    width: 50%;
+  }
+  
+  form {
+    background-color: #ffffff;
+    padding: 40px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-text {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    border: 1px solid #dfdfdf;
+  }
+  
+  button[type="submit"] {
+    background-color: #0074D9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #004F8A;
+  }
+  
+  .bottom-text {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .bottom-text a {
+    text-decoration: none;
+    color: #0074D9;
+  }
+
+  .register{
+    width: 40%;
+    margin: 40px auto;
+  }
+  
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  width: 100%;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #928f8f;
+  background-color: #deecf8;
+  background-image: none;
+  cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  margin: 15px 0;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #deecf8;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
