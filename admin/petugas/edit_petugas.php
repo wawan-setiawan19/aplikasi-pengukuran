@@ -7,7 +7,7 @@ $data_petugas = $petugas->getPetugasById($id_petugas);
 
 ?>
 <a href="?p=petugas" class="btn">Kembali</a>
-<form action="pages/proses-edit-petugas.php" method="POST">
+<form action="petugas/proses-edit-petugas.php" method="POST">
     <h1>Ubah Petugas</h1>
     <label for="nomor"><b>Nomor Petugas</b></label>
     <input type="text" id="" placeholder="Masukkan nomor petugas" name="" value="<?= $data_petugas['nomor_petugas']?>" disabled>

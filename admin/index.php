@@ -26,16 +26,16 @@ if(!$_SESSION['username']){
           $page = $_GET['p'];
           switch ($page) {
             case 'petugas':
-              include('pages/petugas.php');
+              include('petugas/petugas.php');
               break;
             case 'tambah_petugas':
-              include('pages/tambah_petugas.php');
+              include('petugas/tambah_petugas.php');
               break;
             case 'edit_petugas':
-              include('pages/edit_petugas.php');
+              include('petugas/edit_petugas.php');
               break;
             case 'delete_petugas':
-              include('pages/delete_petugas.php');
+              include('petugas/delete_petugas.php');
               break;
             default:
               include('pages/404.php');

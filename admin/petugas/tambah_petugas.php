@@ -1,17 +1,18 @@
 <?php
     require('../class/Petugas.php');
     $petugas = new Petugas();
-    $jumlah_petugas = $petugas->getTotalData();
-    if($jumlah_petugas<10){
-        $kode = "00".$jumlah_petugas+1;
-    }elseif ($jumlah_petugas<100) {
-        $kode = "0".$jumlah_petugas+1;
+    $petugas_terakhir = $petugas->getLastData();
+    $num = intval(substr($petugas_terakhir['nomor_petugas'], 3));
+    if($num<10){
+        $kode = "00".$num+1;
+    }elseif ($num<100) {
+        $kode = "0".$num+1;
     }else{
-        $kode = $jumlah_petugas+1;
+        $kode = $num+1;
     }
 ?>
 <a href="?p=petugas" class="btn">Kembali</a>
-<form action="pages/proses-input-petugas.php" method="POST">
+<form action="petugas/proses-input-petugas.php" method="POST">
     <h1>Tambah Petugas</h1>
     <label for="nomor"><b>Nomor Petugas</b></label>
     <input type="text" id="nomor" placeholder="Masukkan nomor petugas" name="" value="<?= "PTG".$kode?>" required disabled>
