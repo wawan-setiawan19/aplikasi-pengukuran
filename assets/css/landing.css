@@ -137,23 +137,21 @@
     padding: 10px;    
   }
 
-  nav a.logout{
-    background-color: rgb(157, 0, 0);
-    padding: 10px;
-    display: inline-block;
-    border: none;
-    border-radius: 5px;
-  }
-
   main{
     min-height: 85vh;
+    padding: 20px 0;
   }
 
   .btn{
-    background-color: #004F8A;
     color: #fff;
     padding: 10px 20px;
     display: inline-block;
     margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
+    background-color: #004F8A;
+  }
+
+  .danger{
+    background-color: rgb(157, 0, 0);
   }

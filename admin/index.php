@@ -4,29 +4,48 @@ session_start();
 if(!$_SESSION['username']){
     header('Location:'.ROOT_PATH.'/login.php');
 }
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Sistem Pengajuan Pengukuran Tanah</title>
 	<link rel="stylesheet" type="text/css" href="<?= ROOT_PATH?>/assets/css/landing.css">
+  <link rel="stylesheet" type="text/css" href="<?= ROOT_PATH ?>/assets/css/login.css">
 	<link rel="stylesheet" type="text/css" href="./admin.css">
+	<link rel="stylesheet" type="text/css" href="./table.css">
+	<link rel="stylesheet" type="text/css" href="./pagination.css">
 </head>
 <body>
     <?php include('../assets/components/nav.php'); ?>
-  <nav class="sidenav">
-    <ul>
-      <li><a href="#">Beranda</a></li>
-      <li><a href="#">Pengajuan</a></li>
-      <li><a href="#">Laporan</a></li>
-      <li><a href="#">Pengaturan</a></li>
-    </ul>
-    <button id="closeNav">&#10005;</button>
-  </nav>
   <main>
     <button id="openNav">&#9776;</button>
-    <h1>Selamat datang di halaman admin!</h1>
-    <p>Silahkan pilih menu di sidenav untuk mengakses fitur yang tersedia.</p>
+    <div class="container">
+      <?php
+        if (isset($_GET['p'])) {
+          $page = $_GET['p'];
+          switch ($page) {
+            case 'petugas':
+              include('pages/petugas.php');
+              break;
+            case 'tambah_petugas':
+              include('pages/tambah_petugas.php');
+              break;
+            case 'edit_petugas':
+              include('pages/edit_petugas.php');
+              break;
+            case 'delete_petugas':
+              include('pages/delete_petugas.php');
+              break;
+            default:
+              include('pages/404.php');
+              break;
+          }
+        }else{
+          include('pages/beranda.php');
+        }
+      ?>
+    </div>
   </main>
   <script src="admin.js"></script>
 </body>

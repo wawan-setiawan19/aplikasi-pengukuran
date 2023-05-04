@@ -1,33 +1,25 @@
 <?php
 // Include file yang berisi class User
-include './class/User.php';
+include '../../class/Petugas.php';
 
 // Cek apakah form sudah di-submit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Ambil nilai dari form
-	$username = $_POST['username'];
+	$nomor = $_POST['nomor'];
+	$nama = $_POST['nama'];
 	$password = $_POST['password'];
+	$beban = 0;
 
 	// Buat objek User dan isi dengan nilai dari form
-	$user = new User($username, $password);
+	$petugas = new Petugas();
 
 	// Lakukan proses registrasi dengan method register
-	if ($user->login()) {
+	if ($petugas->create($nomor, $nama, $password, $beban)) {
 		// Jika berhasil, tampilkan pesan sukses
-		if (session_status() == PHP_SESSION_NONE) {
-			session_start();
-		}
-
-		if($_SESSION['role']=='admin'){
-			header("Location: admin/index.php");
-		}else{
-			header("Location: users/index.php");
-		}
-		
+        header("Location: ../index.php?p=petugas");
 	} else {
 		// Jika gagal, tampilkan pesan gagal
-		header("Location: login.php");
-		echo "Login gagal!";
+		echo "Input gagal!";
 	}
 }
 ?>

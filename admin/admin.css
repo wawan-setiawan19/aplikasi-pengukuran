@@ -46,11 +46,6 @@
     color: white;
   }
   
-  main {
-    margin-left: 200px;
-    padding: 20px;
-  }
-  
   #openNav {
     font-size: 30px;
     cursor: pointer;
