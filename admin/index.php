@@ -37,12 +37,14 @@ if(!$_SESSION['username']){
             case 'delete_petugas':
               include('petugas/delete_petugas.php');
               break;
+            case 'pengajuan':
+              include('pengajuan/pengajuan.php');
             default:
               include('pages/404.php');
               break;
           }
         }else{
-          include('pages/beranda.php');
+          include('petugas/beranda.php');
         }
       ?>
     </div>

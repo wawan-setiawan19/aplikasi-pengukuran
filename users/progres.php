@@ -19,10 +19,6 @@ if($tanah->cekTanah($_SESSION['id'])){
 if($tanah->cekPengajuan($_SESSION['id'])){
     $status_pengajuan = true;
 }
-
-if($tanah->cekPengajuan($_SESSION['id'])){
-    $status_berkas = true;
-}
 ?>
 <!DOCTYPE html>
 <html>

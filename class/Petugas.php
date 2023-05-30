@@ -119,4 +119,17 @@ class Petugas{
             return mysqli_fetch_assoc($result);
         }
     }
+
+    public function getPetugas(){
+        require('db_config.php');
+        if(!$conn){
+            echo "Koneksi gagal: " . mysqli_connect_error();
+			exit;
+        }
+        $sql = "SELECT * FROM petugas ORDER BY akumlasi_beban DESC LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) == 1){
+            return mysqli_fetch_assoc($result);
+        }
+    }
 }
