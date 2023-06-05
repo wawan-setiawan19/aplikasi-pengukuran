@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2023 at 10:37 AM
+-- Generation Time: Jun 05, 2023 at 07:13 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -36,6 +36,14 @@ CREATE TABLE `berkas` (
   `keterangan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `berkas`
+--
+
+INSERT INTO `berkas` (`id_berkas`, `id_pengajuan`, `file`, `tgl_upload`, `status`, `keterangan`) VALUES
+(3, 3, 'uploads/Ujang Bustomi/Ujang Bustomi_KTP.png', '2023-06-05', 'VALID', 'KTP'),
+(4, 3, 'uploads/Ujang Bustomi/Ujang Bustomi_KK.png', '2023-06-05', 'VALID', 'KK');
+
 -- --------------------------------------------------------
 
 --
@@ -46,13 +54,20 @@ CREATE TABLE `pengajuan` (
   `id_pengajuan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_tanah` int(11) NOT NULL,
-  `id_petugas` int(11) NOT NULL,
+  `id_petugas` varchar(20) NOT NULL,
   `status_permohonan` varchar(50) NOT NULL,
   `tgl_permohonan` date NOT NULL,
   `tgl_ambil_sertipikat` date NOT NULL,
   `status_hak_tanah` varchar(50) NOT NULL,
   `tgl_survey` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pengajuan`
+--
+
+INSERT INTO `pengajuan` (`id_pengajuan`, `id_user`, `id_tanah`, `id_petugas`, `status_permohonan`, `tgl_permohonan`, `tgl_ambil_sertipikat`, `status_hak_tanah`, `tgl_survey`) VALUES
+(3, 2, 7, 'PTG002', 'DONE', '2023-05-30', '2023-06-22', 'Hak Pakai', '2023-06-12');
 
 -- --------------------------------------------------------
 
@@ -85,7 +100,7 @@ CREATE TABLE `status` (
   `id_status` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `waktu` datetime NOT NULL,
-  `keterangan` varchar(50) NOT NULL
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -93,7 +108,17 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`id_status`, `id_user`, `waktu`, `keterangan`) VALUES
-(1, 2, '2023-04-26 14:32:26', 'INPUT TANAH SUDAH BERHASIL');
+(1, 2, '2023-04-26 14:32:26', 'INPUT TANAH SUDAH BERHASIL'),
+(4, 2, '2023-05-30 09:44:44', 'PENGAJUAN DALAM PENINJAUAN'),
+(5, 2, '2023-06-05 17:11:10', 'UPLOAD BERKAS KTP DIAJUKAN'),
+(6, 2, '2023-06-05 17:13:16', 'UPLOAD BERKAS KTP DIAJUKAN'),
+(7, 2, '2023-06-05 17:26:39', 'UPLOAD BERKAS KK DIAJUKAN'),
+(8, 2, '2023-06-05 17:59:49', 'PROSES UKUR DIMULAI'),
+(9, 2, '2023-06-05 18:02:28', 'PROSES UKUR DIMULAI'),
+(11, 2, '2023-06-05 18:27:08', 'BERKAS SUDAH DIVALIDASI'),
+(12, 2, '2023-06-05 18:49:25', 'PROSES UKUR DIMULAI'),
+(13, 2, '2023-06-05 18:52:28', 'PROSES UKUR DIMULAI'),
+(14, 2, '2023-06-05 19:01:09', 'ANDA DAPAT MENGAMBIL SERTIPIKAT PADA TANGGAL 2023-06-22');
 
 -- --------------------------------------------------------
 
@@ -159,6 +184,18 @@ INSERT INTO `users` (`id`, `username`, `email`, `nik`, `role`, `password`, `nama
 --
 
 --
+-- Indexes for table `berkas`
+--
+ALTER TABLE `berkas`
+  ADD PRIMARY KEY (`id_berkas`);
+
+--
+-- Indexes for table `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  ADD PRIMARY KEY (`id_pengajuan`);
+
+--
 -- Indexes for table `petugas`
 --
 ALTER TABLE `petugas`
@@ -187,10 +224,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `berkas`
+--
+ALTER TABLE `berkas`
+  MODIFY `id_berkas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tanah`
