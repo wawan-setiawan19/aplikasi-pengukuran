@@ -1,11 +1,11 @@
 <?php
-    require('../class/Petugas.php');
+    require('../class/Pengajuan.php');
     $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
     $mulai_data = $halaman > 1 ? ($halaman * 10) - 10 : 0;
-    $petugas = new Petugas();
-    $jumlah_petugas = $petugas->getTotalData();
-    $total_halaman = ceil($jumlah_petugas/10);
-    $data_petugas = $petugas->getPetugasByPage($mulai_data);
+    $pengajuan = new Pengajuan();
+    $jumlah_pengajuan = $pengajuan->getTotalData();
+    $total_halaman = ceil($jumlah_pengajuan/10);
+    $data_pengajuan = $pengajuan->getPengajuanByPage($mulai_data);
 ?>
 
 <h1>
@@ -16,33 +16,39 @@
         <thead>
             <tr>
                 <th>
-                    Nomor Petugas
+                    ID PENGAJUAN
                 </th>
                 <th>
-                    Nama Petugas
+                    NAMA PEMILIK
                 </th>
                 <th>
-                    Akumulasi Beban
+                    PETUGAS
                 </th>
                 <th>
-                    Aksi
+                    STATUS PERMOHONAN
                 </th>
+                <th>
+                    TANGGAL PERMOHONAN
+                </th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            <?php if($jumlah_petugas < 1 ) : ?>
+            <?php if($jumlah_pengajuan < 1 ) : ?>
             <tr>
                 <td colspan=4>Belum ada data!</td>
             </tr>
             <?php else : ?>
-                <?php foreach ($data_petugas as $data) : ?>
+                <?php foreach ($data_pengajuan as $data) : ?>
                     <tr>
-                        <td><?= $data["nomor_petugas"] ?></td>
-                        <td><?= $data["nama_petugas"] ?></td>
-                        <td><?= $data["akumlasi_beban"] ?></td>
+                        <td><?= $data["id_pengajuan"] ?></td>
+                        <td><?= $data["nama_pemilik"] ?></td>
+                        <td><?= $data["id_petugas"] ?></td>
+                        <td><?= $data["status_permohonan"] ?></td>
+                        <td><?= $data["tgl_permohonan"] ?></td>
                         <td>
-                            <a href="?p=edit_petugas&idp=<?=$data["nomor_petugas"]?>" class="btn">Edit</a>
-                            <a href="?p=delete_petugas&idp=<?=$data["nomor_petugas"]?>" class="btn danger">Hapus</a>
+                            <a href="?p=edit_petugas&idp=<?=$data["id_pengajuan"]?>" class="btn">Edit</a>
+                            <a href="?p=delete_petugas&idp=<?=$data["id_pengajuan"]?>" class="btn danger">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
@@ -51,7 +57,7 @@
     </table>
 
     <div>
-        jumlah data = <?= $jumlah_petugas ?>
+        jumlah data = <?= $jumlah_pengajuan ?>
     </div>
 
     <div id="app" class="container">  

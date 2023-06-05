@@ -45,6 +45,13 @@
     margin-bottom: 20px;
     border: 1px solid #dfdfdf;
   }
+
+  input::file-selector-button{
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    color: #004F8A;
+  }
   
   button[type="submit"] {
     background-color: #0074D9;

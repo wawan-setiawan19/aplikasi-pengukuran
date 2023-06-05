@@ -29,7 +29,7 @@
 							<button id="closeNav">&#10005;</button>
 						</nav>
 						<li><a href="?p=petugas">Petugas</a></li>
-						<li><a href="#">Pengajuan</a></li>
+						<li><a href="?p=pengajuan">Pengajuan</a></li>
 						<li><a href="#">Laporan</a></li>
 						<li><a href="#">Pengaturan</a></li>
 					<?php endif ?>

@@ -1,5 +1,4 @@
 <?php
-
 class Tanah{
     public function cekTanah($id_user){
         require('db_config.php');
@@ -30,6 +29,23 @@ class Tanah{
 
         if(mysqli_num_rows($result) == 1){
             return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getPengajuanById($id_user){
+        require('db_config.php');
+        if(!$conn){
+            echo "Koneksi gagal: " . mysqli_connect_error();
+			exit;
+        }
+
+        $sql = "SELECT * FROM pengajuan WHERE id_user='$id_user'";
+		$result = mysqli_query($conn, $sql);
+
+        if(mysqli_num_rows($result) == 1){
+            return $result;
         }else{
             return false;
         }

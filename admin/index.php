@@ -39,6 +39,7 @@ if(!$_SESSION['username']){
               break;
             case 'pengajuan':
               include('pengajuan/pengajuan.php');
+              break;
             default:
               include('pages/404.php');
               break;
