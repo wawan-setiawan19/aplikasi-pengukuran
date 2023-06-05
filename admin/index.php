@@ -43,6 +43,15 @@ if(!$_SESSION['username']){
             case 'proses_pengukuran':
               include('pengajuan/proses-pengukuran.php');
               break;
+            case 'cek_berkas':
+              include('pengajuan/cek-berkas.php');
+              break;
+            case 'validasi_berkas':
+              include('pengajuan/validasi_berkas.php');
+              break;
+            case 'terbit_sertip':
+              include('pengajuan/terbit_sertip.php');
+              break;
             default:
               include('pages/404.php');
               break;

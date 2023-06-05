@@ -34,6 +34,23 @@ class Tanah{
         }
     }
 
+    public function cekBerkas($id_user){
+        require('db_config.php');
+        if(!$conn){
+            echo "Koneksi gagal: " . mysqli_connect_error();
+			exit;
+        }
+
+        $sql = "SELECT * FROM pengajuan WHERE id_user='$id_user' AND NOT tgl_ambil_sertipikat='0000-00-00'";
+		$result = mysqli_query($conn, $sql);
+
+        if(mysqli_num_rows($result) == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function getPengajuanById($id_user){
         require('db_config.php');
         if(!$conn){

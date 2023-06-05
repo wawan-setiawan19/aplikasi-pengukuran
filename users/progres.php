@@ -18,6 +18,10 @@ if($tanah->cekTanah($_SESSION['id'])){
 
 if($tanah->cekPengajuan($_SESSION['id'])){
     $status_pengajuan = true;
+    $status_berkas = false;
+}
+if($tanah->cekBerkas($_SESSION['id'])){
+    $status_berkas = true;
 }
 ?>
 <!DOCTYPE html>
@@ -62,7 +66,7 @@ if($tanah->cekPengajuan($_SESSION['id'])){
                 <div class="timeline-component timeline-content <?= $status_berkas?"timeline-content-sucess":"" ?>">
                     <h3>Tahapan Input Selesai</h3>
                     <p>Anda bisa periksa status pengajuan untuk mengetahui tanggal pengambilan sertipikat</p>
-                    <a href="status-pengajuan.php" class="btn <?= $status_berkas?"":"btn-disable" ?>">Periksa Status Pengajuan</a>
+                    <a href="cek-status.php" class="btn <?= $status_berkas?"":"btn-disable" ?>">Periksa Status Pengajuan</a>
                 </div>
                 <div class="timeline-middle <?= $status_pengajuan?"timeline-success":"" ?>">
                     <div class="timeline-circle <?= $status_pengajuan?"timeline-success":"" ?>"></div>

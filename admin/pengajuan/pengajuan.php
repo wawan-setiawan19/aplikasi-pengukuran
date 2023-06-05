@@ -9,9 +9,8 @@
 ?>
 
 <h1>
-    Petugas
+    Pengajuan
 </h1>
-<a href="?p=tambah_petugas" class="btn tambah">Tambah Petugas</a>
     <table>
         <thead>
             <tr>
@@ -49,6 +48,12 @@
                         <td>
                             <?php if($data['status_permohonan'] == "PENDING") : ?>
                                 <a href="?p=proses_pengukuran&idp=<?=$data["id_pengajuan"]?>&idu=<?=$data["id_user"]?>" class="btn">PROSES PENGUKURAN</a>
+                            <?php endif?>
+                            <?php if($data['status_permohonan'] == "PROSES UKUR") : ?>
+                                <a href="?p=cek_berkas&idp=<?=$data["id_pengajuan"]?>&idu=<?=$data["id_user"]?>" class="btn">CEK BERKAS</a>
+                            <?php endif?>
+                            <?php if($data['status_permohonan'] == "BERKAS VALID") : ?>
+                                <a href="?p=terbit_sertip&idp=<?=$data["id_pengajuan"]?>&idu=<?=$data["id_user"]?>" class="btn">TERBITKAN SERTIPIKAT</a>
                             <?php endif?>
                         </td>
                     </tr>
