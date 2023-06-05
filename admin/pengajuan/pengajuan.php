@@ -47,8 +47,9 @@
                         <td><?= $data["status_permohonan"] ?></td>
                         <td><?= $data["tgl_permohonan"] ?></td>
                         <td>
-                            <a href="?p=edit_petugas&idp=<?=$data["id_pengajuan"]?>" class="btn">Edit</a>
-                            <a href="?p=delete_petugas&idp=<?=$data["id_pengajuan"]?>" class="btn danger">Hapus</a>
+                            <?php if($data['status_permohonan'] == "PENDING") : ?>
+                                <a href="?p=proses_pengukuran&idp=<?=$data["id_pengajuan"]?>&idu=<?=$data["id_user"]?>" class="btn">PROSES PENGUKURAN</a>
+                            <?php endif?>
                         </td>
                     </tr>
                 <?php endforeach ?>

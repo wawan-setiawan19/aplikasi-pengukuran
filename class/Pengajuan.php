@@ -22,21 +22,23 @@ class Pengajuan{
         }
     }
 
-    public function edit($nomor, $nama, $password){
+    public function updateStatus($id_user, $message){
+        require('db_config.php');
+        $datetime = date('Y-m-d H:i:s');
+        $sql_status = "INSERT INTO status (id_user, waktu, keterangan) VALUES ('$id_user', '$datetime', '$message')";
+        $result_status = mysqli_query($conn, $sql_status);
+    }
+
+    public function ajukanPengukuran($id_pengajuan, $id_user){
         require('db_config.php');
         if(!$conn){
             echo "Koneksi gagal: " . mysqli_connect_error();
 			exit;
         }
-        if($password !== ''){
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "UPDATE petugas SET nama_petugas='$nama',password='$hashed_password' WHERE nomor_petugas='$nomor'";
-        }else{
-            $sql = "UPDATE petugas SET nama_petugas='$nama' WHERE nomor_petugas='$nomor'";
-        }
-
+        $sql = "UPDATE pengajuan SET status_permohonan='PROSES UKUR' WHERE id_pengajuan='$id_pengajuan'";
+        
         if (mysqli_query($conn, $sql)) {
-            // Jika query berhasil, tutup koneksi dan return true
+            $this->updateStatus($id_user, "PROSES UKUR DIMULAI");
             mysqli_close($conn);
             return true;
         } else {

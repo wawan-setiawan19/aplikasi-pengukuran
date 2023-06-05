@@ -40,6 +40,9 @@ if(!$_SESSION['username']){
             case 'pengajuan':
               include('pengajuan/pengajuan.php');
               break;
+            case 'proses_pengukuran':
+              include('pengajuan/proses-pengukuran.php');
+              break;
             default:
               include('pages/404.php');
               break;
