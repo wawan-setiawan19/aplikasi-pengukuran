@@ -23,15 +23,11 @@
 								<li><a href="#">Beranda</a></li>
 								<li><a href="?p=petugas">Petugas</a></li>
 								<li><a href="#">Pengajuan</a></li>
-								<li><a href="#">Laporan</a></li>
-								<li><a href="#">Pengaturan</a></li>
 							</ul>
 							<button id="closeNav">&#10005;</button>
 						</nav>
 						<li><a href="?p=petugas">Petugas</a></li>
 						<li><a href="?p=pengajuan">Pengajuan</a></li>
-						<li><a href="#">Laporan</a></li>
-						<li><a href="#">Pengaturan</a></li>
 					<?php endif ?>
 					<?php else : ?>
 						<li><a href="<?= $_SESSION ? $root_path."/users/progres.php": "./login.php" ?>">Pengajuan Baru</a></li>
