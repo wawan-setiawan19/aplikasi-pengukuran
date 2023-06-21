@@ -43,17 +43,23 @@ if($berkas->getBerkasByID($id_pengajuan)){
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($dataBerkas as $row) : ?>
+                <?php if(isset($dataBerkas)) :?>
+                    <?php foreach ($dataBerkas as $row) : ?>
+                        <tr>
+                            <td><?= $row['keterangan'] ?></td>
+                            <td><?= $row['tgl_upload'] ?></td>
+                            <td>
+                                <a href="../users/<?=$row['file']?>" target="_blank">
+                                    <img src="../users/<?=$row['file']?>" alt="" height="100px">
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                <?php else :?>
                     <tr>
-                        <td><?= $row['keterangan'] ?></td>
-                        <td><?= $row['tgl_upload'] ?></td>
-                        <td>
-                            <a href="../users/<?=$row['file']?>" target="_blank">
-                                <img src="../users/<?=$row['file']?>" alt="" height="100px">
-                            </a>
-                        </td>
+                        <td colspan="3">Belum ada berkas</td>
                     </tr>
-                <?php endforeach ?>
+                <?php endif?>
             </tbody>
         </table>
   </div>
