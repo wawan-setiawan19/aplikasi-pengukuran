@@ -22,6 +22,7 @@ if($tanah->getPengajuanById($_SESSION['id'])){
 }
 
 if($berkas->getBerkasByID($item['id_pengajuan'])){
+    
     $dataBerkas = $berkas->getBerkasByID($item['id_pengajuan']);
 }
 

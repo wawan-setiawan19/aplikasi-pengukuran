@@ -11,7 +11,7 @@ class Berkas{
         $sql = "SELECT * FROM berkas WHERE id_pengajuan='$id_pengajuan'";
 		$result = mysqli_query($conn, $sql);
 
-        if(mysqli_num_rows($result) > 1){
+        if(mysqli_num_rows($result) >= 1){
             return $result;
         }else{
             return false;

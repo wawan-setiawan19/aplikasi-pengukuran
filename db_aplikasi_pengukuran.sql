@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2023 at 07:13 PM
+-- Generation Time: Jun 21, 2023 at 05:22 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -67,7 +67,8 @@ CREATE TABLE `pengajuan` (
 --
 
 INSERT INTO `pengajuan` (`id_pengajuan`, `id_user`, `id_tanah`, `id_petugas`, `status_permohonan`, `tgl_permohonan`, `tgl_ambil_sertipikat`, `status_hak_tanah`, `tgl_survey`) VALUES
-(3, 2, 7, 'PTG002', 'DONE', '2023-05-30', '2023-06-22', 'Hak Pakai', '2023-06-12');
+(3, 2, 7, 'PTG002', 'DONE', '2023-05-30', '2023-06-22', 'Hak Pakai', '2023-06-12'),
+(4, 9, 9, 'PTG002', 'PENDING', '2023-06-16', '0000-00-00', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,9 @@ INSERT INTO `status` (`id_status`, `id_user`, `waktu`, `keterangan`) VALUES
 (11, 2, '2023-06-05 18:27:08', 'BERKAS SUDAH DIVALIDASI'),
 (12, 2, '2023-06-05 18:49:25', 'PROSES UKUR DIMULAI'),
 (13, 2, '2023-06-05 18:52:28', 'PROSES UKUR DIMULAI'),
-(14, 2, '2023-06-05 19:01:09', 'ANDA DAPAT MENGAMBIL SERTIPIKAT PADA TANGGAL 2023-06-22');
+(14, 2, '2023-06-05 19:01:09', 'ANDA DAPAT MENGAMBIL SERTIPIKAT PADA TANGGAL 2023-06-22'),
+(15, 9, '2023-06-16 11:08:16', 'INPUT TANAH SUDAH BERHASIL'),
+(16, 9, '2023-06-16 11:08:22', 'PENGAJUAN DALAM PENINJAUAN');
 
 -- --------------------------------------------------------
 
@@ -150,7 +153,8 @@ CREATE TABLE `tanah` (
 --
 
 INSERT INTO `tanah` (`id_tanah`, `id_user`, `nama_pemilik`, `alamat`, `kelurahan`, `kecamatan`, `kabupaten`, `provinsi`, `status_tanah`, `jenis_tanah`, `luas_tanah`, `batas_utara`, `batas_selatan`, `batas_barat`, `batas_timur`, `tgl_input`) VALUES
-(7, 2, 'Ujang Bustomi', 'Jalan Pegambiran', 'Gamping', 'Campur Darat', 'Kabupaten Tulungagung', 'Jawa Timur', 'Hak Pakai', 'Tanah Bangunan', 100, 'Kebon Kelapa', 'Parit', 'Kebun Singkong', 'Sungai Cimanuk', '2023-04-26');
+(7, 2, 'Ujang Bustomi', 'Jalan Pegambiran', 'Gamping', 'Campur Darat', 'Kabupaten Tulungagung', 'Jawa Timur', 'Hak Pakai', 'Tanah Bangunan', 100, 'Kebon Kelapa', 'Parit', 'Kebun Singkong', 'Sungai Cimanuk', '2023-04-26'),
+(9, 9, 'Ahmad Fauzi Bowo', 'Jalan jalan', 'Towangsan', 'Gantiwarno', 'Kabupaten Klaten', 'Jawa Tengah', 'Hak Milik', 'Tanah Pertanian', 200, 'Ada', 'Ada', 'Ada', 'Ada', '2023-06-16');
 
 -- --------------------------------------------------------
 
@@ -177,7 +181,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `nik`, `role`, `password`, `nama
 (2, 'jajangnur', 'jajang@gmail.com', '1671061206100009', 'user', '$2y$10$WHIZRXglJxneCbVpC27haOX.hjBe6UovFlqjxrfMKAGrKIYp0PbC.', 'Jajang Nurjaman'),
 (6, 'ukur1', 'ukur1@gmail.com', '3209400090900000', 'user', '$2y$10$Z9FXU4K0VS2GJ6RwlnInbuQwE5MFL4dK4P2/OIDoSTLbno94Z/o9C', 'Petugas Ukur 1'),
 (7, 'test', 'test@gmail.com', '1671061206100009', 'user', '$2y$10$5et/IrHVazSWUOlQKGKHmeVntAsDxynJzzdfLMddY3kwqX7sjLgVe', 'Testing'),
-(8, 'tes2', 'tes2@gmail.com', '43876789898900009', 'user', '$2y$10$cGHMPDmLXyFLrqhgdTcqLe7tz/QJjnX3uGDfuV5hYnejXkPT3/ZqS', 'testing');
+(8, 'tes2', 'tes2@gmail.com', '43876789898900009', 'user', '$2y$10$cGHMPDmLXyFLrqhgdTcqLe7tz/QJjnX3uGDfuV5hYnejXkPT3/ZqS', 'testing'),
+(9, 'fauzi', 'fauzi@gmail.com', '1671061206100009', 'user', '$2y$10$kiL4kmtMravJZ22cES/4..kgOQjvPdg1rvKhi9D1sB1mu1q3oxXRq', 'Ahmad Fauzi');
 
 --
 -- Indexes for dumped tables
@@ -187,13 +192,17 @@ INSERT INTO `users` (`id`, `username`, `email`, `nik`, `role`, `password`, `nama
 -- Indexes for table `berkas`
 --
 ALTER TABLE `berkas`
-  ADD PRIMARY KEY (`id_berkas`);
+  ADD PRIMARY KEY (`id_berkas`),
+  ADD KEY `id_pengajuan` (`id_pengajuan`);
 
 --
 -- Indexes for table `pengajuan`
 --
 ALTER TABLE `pengajuan`
-  ADD PRIMARY KEY (`id_pengajuan`);
+  ADD PRIMARY KEY (`id_pengajuan`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_tanah` (`id_tanah`),
+  ADD KEY `id_petugas` (`id_petugas`);
 
 --
 -- Indexes for table `petugas`
@@ -205,13 +214,15 @@ ALTER TABLE `petugas`
 -- Indexes for table `status`
 --
 ALTER TABLE `status`
-  ADD PRIMARY KEY (`id_status`);
+  ADD PRIMARY KEY (`id_status`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `tanah`
 --
 ALTER TABLE `tanah`
-  ADD PRIMARY KEY (`id_tanah`);
+  ADD PRIMARY KEY (`id_tanah`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `users`
@@ -233,25 +244,55 @@ ALTER TABLE `berkas`
 -- AUTO_INCREMENT for table `pengajuan`
 --
 ALTER TABLE `pengajuan`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tanah`
 --
 ALTER TABLE `tanah`
-  MODIFY `id_tanah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_tanah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `berkas`
+--
+ALTER TABLE `berkas`
+  ADD CONSTRAINT `berkas_ibfk_1` FOREIGN KEY (`id_pengajuan`) REFERENCES `pengajuan` (`id_pengajuan`);
+
+--
+-- Constraints for table `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  ADD CONSTRAINT `pengajuan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `pengajuan_ibfk_2` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`nomor_petugas`),
+  ADD CONSTRAINT `pengajuan_ibfk_3` FOREIGN KEY (`id_tanah`) REFERENCES `tanah` (`id_tanah`);
+
+--
+-- Constraints for table `status`
+--
+ALTER TABLE `status`
+  ADD CONSTRAINT `status_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `tanah`
+--
+ALTER TABLE `tanah`
+  ADD CONSTRAINT `tanah_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
